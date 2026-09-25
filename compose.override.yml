@@ -1,0 +1,27 @@
+services:
+  server:
+    environment:
+      - VIRTUAL_HOST=id.mv-angelbachtal.de,ldap.mv-angelbachtal.de
+      - LETSENCRYPT_HOST=id.mv-angelbachtal.de,ldap.mv-angelbachtal.de
+    ports: !override []
+    expose:
+    - 9000
+    networks:
+      proxy:
+      default:
+      prometheus:
+        aliases:
+          - authentik_server
+  worker:
+    networks:
+      default:
+      prometheus:
+        aliases:
+          - authentik_worker
+
+networks:
+  proxy:
+    external: true
+  prometheus:
+    external: true
+
