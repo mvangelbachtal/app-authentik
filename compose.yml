@@ -1,8 +1,7 @@
 services:
   postgresql:
-    env_file:
-    - .env
     environment:
+      AUTHENTIK_ERROR_REPORTING__ENABLED: ${AUTHENTIK_ERROR_REPORTING__ENABLED:-false}
       POSTGRES_DB: ${PG_DB:-authentik}
       POSTGRES_PASSWORD: ${PG_PASS:?database password required}
       POSTGRES_USER: ${PG_USER:-authentik}
@@ -23,9 +22,8 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
-    env_file:
-    - .env
     environment:
+      AUTHENTIK_ERROR_REPORTING__ENABLED: ${AUTHENTIK_ERROR_REPORTING__ENABLED:-false}
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
@@ -45,9 +43,8 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
-    env_file:
-    - .env
     environment:
+      AUTHENTIK_ERROR_REPORTING__ENABLED: ${AUTHENTIK_ERROR_REPORTING__ENABLED:-false}
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
