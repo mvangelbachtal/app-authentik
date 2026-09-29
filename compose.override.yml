@@ -1,8 +1,16 @@
 services:
   server:
     environment:
-      - VIRTUAL_HOST=id.mv-angelbachtal.de,ldap.mv-angelbachtal.de
-      - LETSENCRYPT_HOST=id.mv-angelbachtal.de,ldap.mv-angelbachtal.de
+      AUTHENTIK_EMAIL__HOST: mx2e12.netcup.net
+      AUTHENTIK_EMAIL__PORT: "465"
+      AUTHENTIK_EMAIL__USERNAME: no-reply@mv-angelbachtal.de
+      AUTHENTIK_EMAIL__PASSWORD: ${AUTHENTIK_EMAIL__PASSWORD:?email password required}
+      AUTHENTIK_EMAIL__USE_TLS: "false"
+      AUTHENTIK_EMAIL__USE_SSL: "true"
+      AUTHENTIK_EMAIL__TIMEOUT: "10"
+      AUTHENTIK_EMAIL__FROM: "Accountverwaltung MVA <no-reply@mv-angelbachtal.de>"
+      VIRTUAL_HOST: "id.mv-angelbachtal.de,ldap.mv-angelbachtal.de"
+      LETSENCRYPT_HOST: "id.mv-angelbachtal.de,ldap.mv-angelbachtal.de"
     ports: !override []
     expose:
     - 9000
@@ -13,6 +21,15 @@ services:
         aliases:
           - authentik_server
   worker:
+    environment:
+      AUTHENTIK_EMAIL__HOST: mx2e12.netcup.net
+      AUTHENTIK_EMAIL__PORT: "465"
+      AUTHENTIK_EMAIL__USERNAME: no-reply@mv-angelbachtal.de
+      AUTHENTIK_EMAIL__PASSWORD: ${AUTHENTIK_EMAIL__PASSWORD:?email password required}
+      AUTHENTIK_EMAIL__USE_TLS: "false"
+      AUTHENTIK_EMAIL__USE_SSL: "true"
+      AUTHENTIK_EMAIL__TIMEOUT: "10"
+      AUTHENTIK_EMAIL__FROM: "Accountverwaltung MVA <no-reply@mv-angelbachtal.de>"
     networks:
       default:
       prometheus:

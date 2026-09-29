@@ -1,5 +1,7 @@
 name: authentik
 working_dir: .
+environment:
+  COMPOSE_PORT_HTTP: "9000"
 compose_files:
   - compose.yml
   - compose.override.yml
