@@ -5,5 +5,7 @@ secrets.env
 secrets.env.*
 !secrets.env.example
 .docker-compose.yml
-data/
+data/*
+!data/media/
+!data/media/**
 certs/
